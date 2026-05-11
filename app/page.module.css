@@ -1,0 +1,47 @@
+.main {
+  flex: 1;
+}
+
+.hero {
+  min-height: calc(100vh - 68px);
+  background-image: url('/img/hero.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  display: grid;
+  place-items: end center;
+
+  padding-bottom: 60px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .hero {
+    background-image: url('/img/hero@2x.webp');
+  }
+}
+.content {
+  display: grid;
+  justify-items: center;
+}
+
+.title,
+.text {
+  color: var(--white);
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-bottom: 16px;
+}
+
+.text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 40px;
+}

@@ -36,6 +36,12 @@
   --line-height-relaxed: 1.33333;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -63,6 +69,11 @@ ol {
   cursor: pointer;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -72,9 +83,20 @@ h6,
 p {
   margin: 0;
   padding: 0;
+  font-size: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+
   color: var(--black-900);
   background: var(--white);
   font-family: var(--font-manrope);
