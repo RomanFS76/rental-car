@@ -1,6 +1,7 @@
 import { Manrope } from 'next/font/google';
 import 'modern-normalize/modern-normalize.css';
 import './globals.css';
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider.jsx';
 import Header from '../components/Header/Header';
 
 const manrope = Manrope({
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable}`}>
-        <Header />
-        {children}
+        <TanStackProvider>
+          <Header />
+          {children}
+        </TanStackProvider>
       </body>
     </html>
   );

@@ -23,6 +23,7 @@ const Header = () => {
             alt="RentalCar logo"
             width={104}
             height={16}
+            loading="eager"
           />
         </Link>
 

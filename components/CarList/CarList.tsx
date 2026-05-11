@@ -1,9 +1,11 @@
-import css from './CarList.module.css'
+import { getCars } from '@/lib/api/api';
+// import css from './CarList.module.css';
 
-const CarList = () => {
-  return (
-    <div>CarList</div>
-  )
-}
+const CarList = async () => {
+  const response = await getCars();
+  console.log(response);
 
-export default CarList
+  return <div>CarList</div>;
+};
+
+export default CarList;
