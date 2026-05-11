@@ -1,0 +1,21 @@
+.header {
+  height: 68px;
+  background-color: var(--gray-300);
+}
+
+.headerContainer {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.active {
+  color: var(--blue-600);
+}
