@@ -1,4 +1,4 @@
-import Button from './components/shared/Button/Button';
+import Button from '../components/shared/Button/Button';
 import css from './page.module.css';
 import Link from 'next/link';
 
