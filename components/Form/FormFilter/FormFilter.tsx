@@ -1,9 +1,9 @@
 'use client';
 
 import Select from 'react-select';
-import css from './Filter.module.css';
+import css from './FormFilter.module.css';
 import { useState } from 'react';
-import Button from '../shared/Button/Button';
+import Button from '../../shared/Button/Button';
 
 const brandOptions = [
   { value: 'Aston Martin', label: 'Aston Martin' },
@@ -31,7 +31,7 @@ const formatMileage = (value: string) => {
   return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-const Filter = () => {
+const FormFilter = () => {
   const [brand, setBrand] = useState('');
   const [price, setPrice] = useState('');
   const [minMileage, setMinMileage] = useState('');
@@ -111,4 +111,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default FormFilter;
