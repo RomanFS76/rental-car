@@ -46,9 +46,13 @@ const FormFilter = () => {
       minMileage,
       maxMileage,
     };
-
     console.log(filters);
+    setBrand('');
+    setPrice('');
+    setMinMileage('');
+    setMaxMileage('');
   };
+
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.field}>
@@ -59,6 +63,7 @@ const FormFilter = () => {
           options={brandOptions}
           placeholder="Choose a brand"
           isSearchable={false}
+          value={brandOptions.find(option => option.value === brand) || null}
           onChange={option => setBrand(option?.value || '')}
         />
       </label>
@@ -70,6 +75,7 @@ const FormFilter = () => {
           options={priceOptions}
           placeholder="Choose a price"
           isSearchable={false}
+          value={priceOptions.find(option => option.value === price) || null}
           onChange={option => setPrice(option?.value || '')}
         />
       </label>
@@ -85,9 +91,7 @@ const FormFilter = () => {
               className={css.input}
               type="text"
               value={formatMileage(minMileage)}
-              onChange={e =>
-                setMinMileage(e.target.value.replace(/\D/g, ''))
-              }
+              onChange={e => setMinMileage(e.target.value.replace(/\D/g, ''))}
             />
           </div>
 
