@@ -14,7 +14,7 @@ const CarList = () => {
     placeholderData: keepPreviousData,
   });
 
-  console.log(cars);
+  console.log(cars?.length);
 
   return (
   <ul className={css.list}>

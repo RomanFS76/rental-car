@@ -1,0 +1,177 @@
+.form {
+  width: 924px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--gray-500);
+  font-weight: 400;
+}
+
+/* Главный контейнер SELECT */
+
+.field :global(.filterSelect__control) {
+  min-height: 44px;
+  width: 204px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--gray-200);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.field :global(.filterSelect__value-container) {
+  padding: 0 16px;
+}
+
+/* Cтили текста внутри SELECT */
+
+.field :global(.filterSelect__placeholder),
+.field :global(.filterSelect__single-value) {
+  margin: 0;
+  color: var(--black-900);
+}
+
+/* вертикальная линия между текстом и стрелкой в react-select. */
+
+.field :global(.filterSelect__indicator-separator) {
+  display: none;
+}
+
+/* это контейнер стрелки dropdown: */
+
+.field :global(.filterSelect__dropdown-indicator) {
+  padding: 0 16px;
+  color: var(--black);
+
+  transition: transform 0.3s ease;
+}
+
+.field
+  :global(.filterSelect__control--menu-is-open)
+  :global(.filterSelect__dropdown-indicator) {
+  transform: scaleY(-1);
+}
+
+/* Выпадающее меню */
+
+.field :global(.filterSelect__menu) {
+  margin-top: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1px solid #f7f7f7;
+  width: 204px;
+  padding-right: 8px;
+}
+
+/*  внутренний список options */
+
+.field :global(.filterSelect__menu-list) {
+  max-height: 272px;
+  padding: 14px 18px;
+}
+
+/* стили для каждого пункта dropdown */
+
+.field :global(.filterSelect__option) {
+  padding: 4px 0;
+  font-size: 16px;
+  color: var(--gray-500);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.field :global(.filterSelect__option--is-focused),
+.field :global(.filterSelect__option--is-selected) {
+  color: var(--black);
+  background-color: transparent;
+}
+
+/* scrollbar целиком */
+
+.field :global(.filterSelect__menu-list::-webkit-scrollbar) {
+  width: 8px;
+}
+
+/* фон/путь, по которому двигается ползунок. */
+
+.field :global(.filterSelect__menu-list::-webkit-scrollbar-track) {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background: transparent;
+}
+
+/* сам ползунок scrollbar. */
+
+.field :global(.filterSelect__menu-list::-webkit-scrollbar-thumb) {
+  background-color: #dadde1;
+  border-radius: 10px;
+}
+
+.formBtn {
+  height: 44px;
+}
+
+
+/* Styles range of Mileage */
+
+.mileageWrapper {
+    display: flex;
+  }
+  
+  .mileageInput {
+    display: flex;
+    align-items: center;
+  
+    width: 160px;
+    height: 44px;
+  
+    padding: 0 24px;
+  
+    background-color: var(--gray-200);
+  }
+  
+  .mileageInput:first-child {
+    border-right: 1px solid var(--gray-300);
+    border-radius: 12px 0 0 12px;
+  }
+  
+  .mileageInput:last-child {
+    border-radius: 0 12px 12px 0;
+  }
+  
+  .mileageText {
+    margin-right: 8px;
+  
+    font-size: 16px;
+    font-weight: var(--font-weight-medium);
+    color: var(--black);
+  }
+  
+  .input {
+    width: 100%;
+  
+    border: none;
+    outline: none;
+    background-color: transparent;
+  
+    font-size: 16px;
+    font-weight: var(--font-weight-medium);
+    color: var(--black);
+  }
+
+  .mileageInput:first-child {
+    border-right: 2px solid var(--gray-400);
+  }

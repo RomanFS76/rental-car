@@ -1,5 +1,114 @@
+'use client';
+
+import Select from 'react-select';
+import css from './Filter.module.css';
+import { useState } from 'react';
+import Button from '../shared/Button/Button';
+
+const brandOptions = [
+  { value: 'Aston Martin', label: 'Aston Martin' },
+  { value: 'Audi', label: 'Audi' },
+  { value: 'BMW', label: 'BMW' },
+  { value: 'Bentley', label: 'Bentley' },
+  { value: 'Buick', label: 'Buick' },
+  { value: 'Chevrolet', label: 'Chevrolet' },
+  { value: 'Chrysler', label: 'Chrysler' },
+  { value: 'GMC', label: 'GMC' },
+  { value: 'HUMMER', label: 'HUMMER' },
+];
+const priceOptions = [
+  { value: '30', label: '30' },
+  { value: '40', label: '40' },
+  { value: '50', label: '50' },
+  { value: '60', label: '60' },
+  { value: '70', label: '70' },
+  { value: '80', label: '80' },
+];
+
+const formatMileage = (value: string) => {
+  const numbers = value.replace(/\D/g, '');
+
+  return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
 const Filter = () => {
-  return <div>Filter</div>;
+  const [brand, setBrand] = useState('');
+  const [price, setPrice] = useState('');
+  const [minMileage, setMinMileage] = useState('');
+  const [maxMileage, setMaxMileage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const filters = {
+      brand,
+      rentalPrice: price,
+      minMileage,
+      maxMileage,
+    };
+
+    console.log(filters);
+  };
+  return (
+    <form className={css.form} onSubmit={handleSubmit}>
+      <label className={css.field}>
+        <span className={css.label}>Car brand</span>
+        <Select
+          instanceId="brand-select"
+          classNamePrefix="filterSelect"
+          options={brandOptions}
+          placeholder="Choose a brand"
+          isSearchable={false}
+          onChange={option => setBrand(option?.value || '')}
+        />
+      </label>
+      <label className={css.field}>
+        <span className={css.label}>Price / 1 hour</span>
+        <Select
+          instanceId="price-select"
+          classNamePrefix="filterSelect"
+          options={priceOptions}
+          placeholder="Choose a price"
+          isSearchable={false}
+          onChange={option => setPrice(option?.value || '')}
+        />
+      </label>
+
+      <label className={css.field}>
+        <span className={css.label}>Car mileage / km</span>
+
+        <div className={css.mileageWrapper}>
+          <div className={css.mileageInput}>
+            <span className={css.mileageText}>From</span>
+
+            <input
+              className={css.input}
+              type="text"
+              value={formatMileage(minMileage)}
+              onChange={e =>
+                setMinMileage(e.target.value.replace(/\D/g, ''))
+              }
+            />
+          </div>
+
+          <div className={css.mileageInput}>
+            <span className={css.mileageText}>To</span>
+
+            <input
+              className={css.input}
+              type="text"
+              value={formatMileage(maxMileage)}
+              onChange={e => setMaxMileage(e.target.value.replace(/\D/g, ''))}
+            />
+          </div>
+        </div>
+      </label>
+
+      <Button type="submit" size="sm" className={css.formBtn}>
+        Submit
+      </Button>
+    </form>
+  );
 };
 
 export default Filter;

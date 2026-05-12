@@ -4,11 +4,9 @@ import CarList from '@/components/CarList/CarList';
 
 const PageCatalog = () => {
   return (
-    <div className={css.overlayCatalog}>
-      <div className={`container`}>
-        <Filter />
-        <CarList />
-      </div>
+    <div className={`container ${css.page} `}>
+      <Filter />
+      <CarList />
     </div>
   );
 };
