@@ -30,10 +30,21 @@ const CarCard = ({ car }: Props) => {
         <p className={css.price}>${car.rentalPrice}</p>
       </div>
 
-      <p className={css.info}>
-        {city} <span>|</span> {country} <span>|</span> {car.rentalCompany}{' '}
-        <span>|</span> {car.type} <span>|</span> {car.mileage} km
-      </p>
+      <div className={css.overlayInfo}>
+        <p className={css.info}>
+          {city}
+          <span>|</span>
+          {country}
+          <span>|</span>
+          {car.rentalCompany}
+        </p>
+        <p className={css.info}>
+          {car.type}
+          <span>|</span>
+          {car.mileage} km
+        </p>
+      </div>
+
       <Button as={Link} href="/catalog" size="md" className={css.btn}>
         Read more
       </Button>
@@ -42,9 +53,3 @@ const CarCard = ({ car }: Props) => {
 };
 
 export default CarCard;
-
-{
-  /* <Link className={css.link} href={`/catalog/${car.id}`}>
-        Read more
-      </Link> */
-}

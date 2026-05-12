@@ -14,19 +14,31 @@
   margin-bottom: 8px;
 }
 
-/* .title,
-.price {
-  font-size: 16px;
-  font-weight: 500;
-} */
+.title {
+  font-weight: var(--font-weight-medium);
+}
 
+.overlayInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--gray-500);
+  margin-bottom: 28px;
+}
 .title span {
   color: var(--blue-500);
 }
 
+.price {
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+}
 .info {
-  font-size: 12px;
-  color: #8d929a;
+  display: flex;
+  gap: 6px;
 }
 
 .btn.btn {
