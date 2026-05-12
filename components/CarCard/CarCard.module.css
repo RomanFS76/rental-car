@@ -1,0 +1,35 @@
+.card {
+  width: 276px;
+}
+
+.image {
+  border-radius: 14px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/* .title,
+.price {
+  font-size: 16px;
+  font-weight: 500;
+} */
+
+.title span {
+  color: var(--blue-500);
+}
+
+.info {
+  font-size: 12px;
+  color: #8d929a;
+}
+
+.btn.btn {
+  width: 100%;
+  padding: 12px 0;
+}
