@@ -15,14 +15,15 @@ type PropsCarList = {
 };
 
 const CarList = ({ params }: PropsCarList) => {
-  const { data: cars } = useQuery({
+  const { data } = useQuery({
     queryKey: ['cars', params],
     queryFn: () => getCars(params),
   });
+  console.log(data);
 
   return (
     <ul className={css.list}>
-      {cars?.map(car => (
+      {data?.cars?.map(car => (
         <CarCard key={car.id} car={car} />
       ))}
     </ul>
