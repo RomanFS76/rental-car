@@ -5,13 +5,20 @@ import { useQuery } from '@tanstack/react-query';
 import css from './CarList.module.css';
 import CarCard from '../CarCard/CarCard';
 
-const CarList = () => {
-  const { data: cars } = useQuery({
-    queryKey: ['cars'],
-    queryFn: getCars,
-  });
+type PropsCarList = {
+  params: {
+    brand?: string;
+    rentalPrice?: string;
+    minMileage?: string;
+    maxMileage?: string;
+  };
+};
 
-  console.log(cars?.length);
+const CarList = ({ params }: PropsCarList) => {
+  const { data: cars } = useQuery({
+    queryKey: ['cars', params],
+    queryFn: () => getCars(params),
+  });
 
   return (
     <ul className={css.list}>

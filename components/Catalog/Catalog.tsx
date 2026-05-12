@@ -7,16 +7,26 @@ import {
 } from '@tanstack/react-query';
 import { getCars } from '@/lib/api/api';
 
-const Catalog = async () => {
+type PropsCatalog = {
+  searchParams: Promise<{
+    brand?: string;
+    rentalPrice?: string;
+    minMileage?: string;
+    maxMileage?: string;
+  }>;
+};
+
+const Catalog = async ({ searchParams }: PropsCatalog) => {
+  const params = await searchParams;
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['cars'],
-    queryFn: getCars,
+    queryKey: ['cars', params],
+    queryFn: () => getCars(params),
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CarList />
+     <CarList params={params} />
     </HydrationBoundary>
   );
 };

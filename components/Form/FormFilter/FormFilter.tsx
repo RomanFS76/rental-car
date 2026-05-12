@@ -4,6 +4,7 @@ import Select from 'react-select';
 import css from './FormFilter.module.css';
 import { useState } from 'react';
 import Button from '../../shared/Button/Button';
+import { useRouter } from 'next/navigation';
 
 const brandOptions = [
   { value: 'Aston Martin', label: 'Aston Martin' },
@@ -32,6 +33,7 @@ const formatMileage = (value: string) => {
 };
 
 const FormFilter = () => {
+  const router = useRouter();
   const [brand, setBrand] = useState('');
   const [price, setPrice] = useState('');
   const [minMileage, setMinMileage] = useState('');
@@ -40,13 +42,28 @@ const FormFilter = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const filters = {
-      brand,
-      rentalPrice: price,
-      minMileage,
-      maxMileage,
-    };
-    console.log(filters);
+    const params = new URLSearchParams();
+
+    if (brand) {
+      params.set('brand', brand);
+    }
+
+    if (price) {
+      params.set('rentalPrice', price);
+    }
+
+    if (minMileage) {
+      params.set('minMileage', minMileage);
+    }
+
+    if (maxMileage) {
+      params.set('maxMileage', maxMileage);
+    }
+
+    router.push(`/catalog?${params.toString()}`);
+
+    console.log(price)
+
     setBrand('');
     setPrice('');
     setMinMileage('');

@@ -10,7 +10,10 @@ export interface CarsResponse {
 
 axios.defaults.baseURL = "https://car-rental-api.goit.global/";
 
-export const getCars = async () => {
-  const res = await axios.get<CarsResponse>("/cars");
+export const getCars = async (params: { brand?: string; rentalPrice?: string; minMileage?: string; maxMileage?: string; }) => {
+   const res = await axios.get<CarsResponse>('/cars', {
+    params,
+  });
+
   return res.data.cars;
 };

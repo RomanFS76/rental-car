@@ -1,13 +1,21 @@
-
 import css from './PageCatalog.module.css';
 import Catalog from '@/components/Catalog/Catalog';
 import FormFilter from '@/components/Form/FormFilter/FormFilter';
 
-const PageCatalog = () => {
+type PropsPageCatalog = {
+  searchParams: Promise<{
+    brand?: string;
+    rentalPrice?: string;
+    minMileage?: string;
+    maxMileage?: string;
+  }>;
+};
+
+const PageCatalog = ({ searchParams }: PropsPageCatalog) => {
   return (
-    <div className={`container ${css.page} `}>
+    <div className={`container ${css.page}`}>
       <FormFilter />
-      <Catalog />
+      <Catalog searchParams={searchParams} />
     </div>
   );
 };
