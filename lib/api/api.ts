@@ -18,7 +18,7 @@ export interface CarsResponse {
   totalPages: number;
 }
 
-export const getCars = async (params: GetCarsParams) => {
+export const getCars = async (params: GetCarsParams): Promise<CarsResponse> => {
   const res = await axios.get<CarsResponse>('/cars', {
     params,
   });
@@ -26,7 +26,7 @@ export const getCars = async (params: GetCarsParams) => {
   return res.data;
 };
 
-export const getBrands = async () => {
+export const getBrands = async (): Promise<string[]> => {
   const res = await axios.get<string[]>('/brands');
   return res.data;
 };
