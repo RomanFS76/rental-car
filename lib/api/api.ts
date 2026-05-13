@@ -26,6 +26,11 @@ export const getCars = async (params: GetCarsParams): Promise<CarsResponse> => {
   return res.data;
 };
 
+export const getDetailCar = async (id: string) => {
+  const res = await axios.get<Car>(`/cars/${id}`);
+  return res.data;
+};
+
 export const getBrands = async (): Promise<string[]> => {
   const res = await axios.get<string[]>('/brands');
   return res.data;
