@@ -29,7 +29,7 @@ const FormFilter = () => {
   const [minMileage, setMinMileage] = useState('');
   const [maxMileage, setMaxMileage] = useState('');
 
-  const { data:brands } = useQuery({
+  const { data: brands } = useQuery({
     queryKey: ['brands'],
     queryFn: getBrands,
   });

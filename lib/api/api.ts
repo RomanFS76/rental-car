@@ -8,7 +8,7 @@ export interface GetCarsParams {
   rentalPrice?: string;
   minMileage?: string;
   maxMileage?: string;
-  page?: string;
+  page?: number;
 }
 
 export interface CarsResponse {
