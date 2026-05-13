@@ -6,6 +6,7 @@ import css from './CarList.module.css';
 import CarCard from '../CarCard/CarCard';
 import Button from '../shared/Button/Button';
 import { useEffect } from 'react';
+import Loader from '../Loader/Loader';
 
 type PropsCarList = {
   params: {
@@ -26,7 +27,7 @@ const CarList = ({ params }: PropsCarList) => {
     };
   }, [queryClient]);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
       queryKey: ['cars', params],
 
@@ -48,11 +49,13 @@ const CarList = ({ params }: PropsCarList) => {
 
   return (
     <>
+      {isLoading && <Loader />}
       <ul className={css.list}>
         {cars?.map(car => (
           <CarCard key={car.id} car={car} />
         ))}
       </ul>
+      {isFetchingNextPage && <Loader />}
       {hasNextPage && (
         <Button
           size="sm"
