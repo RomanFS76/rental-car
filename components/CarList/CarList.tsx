@@ -1,10 +1,11 @@
 'use client';
 
 import { getCars } from '@/lib/api/api';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import css from './CarList.module.css';
 import CarCard from '../CarCard/CarCard';
 import Button from '../shared/Button/Button';
+import { useEffect } from 'react';
 
 type PropsCarList = {
   params: {
@@ -16,6 +17,15 @@ type PropsCarList = {
 };
 
 const CarList = ({ params }: PropsCarList) => {
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    return () => {
+      queryClient.removeQueries({
+        queryKey: ['cars'],
+      });
+    };
+  }, [queryClient]);
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ['cars', params],
@@ -32,6 +42,7 @@ const CarList = ({ params }: PropsCarList) => {
         return currentPage < lastPage.totalPages ? currentPage + 1 : undefined;
       },
     });
+
   console.log(data);
   const cars = data?.pages.flatMap(page => page.cars) ?? [];
 
@@ -48,6 +59,7 @@ const CarList = ({ params }: PropsCarList) => {
           type="button"
           onClick={() => fetchNextPage()}
           disabled={isFetchingNextPage}
+          className={css.loadBtn}
         >
           Load more
         </Button>

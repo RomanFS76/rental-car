@@ -7,3 +7,35 @@
   margin: 0;
   list-style: none;
 }
+button.loadBtn {
+  width: 156px;
+  padding: 12px 37px;
+
+  margin: 0 auto;
+
+  color: var(--black-900);
+  background-color: var(--white);
+  border: 1px solid var(--blue-500);
+
+  font-weight: var(--font-weight-semibold);
+
+   transition:
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+button.loadBtn:hover {
+  border: 1px solid var(--blue-600);
+  background-color: transparent;
+}
+
+
+button.loadBtn:active {
+  transform: translateY(0);
+
+  box-shadow:
+    0 4px 10px rgba(52, 112, 255, 0.18);
+}

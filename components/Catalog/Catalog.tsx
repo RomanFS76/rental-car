@@ -35,7 +35,8 @@ const Catalog = async ({ searchParams }: PropsCatalog) => {
       lastPage.page < lastPage.totalPages
         ? lastPage.page + 1
         : undefined
-  });
+  },
+);
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
      <CarList params={params} />
