@@ -1,5 +1,9 @@
 .card {
   width: 276px;
+  height: 424px;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .image {
@@ -26,7 +30,6 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
   color: var(--gray-500);
-  margin-bottom: 28px;
 }
 .title span {
   color: var(--blue-500);
@@ -39,6 +42,9 @@
 .info {
   display: flex;
   gap: 6px;
+}
+.btnWrapper {
+  margin-top: auto;
 }
 
 .btn.btn {

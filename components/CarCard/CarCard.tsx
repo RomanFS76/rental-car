@@ -45,9 +45,16 @@ const CarCard = ({ car }: Props) => {
         </p>
       </div>
 
-      <Button as={Link} href="/catalog" size="md" className={css.btn}>
-        Read more
-      </Button>
+      <div className={css.btnWrapper}>
+        <Button
+          as={Link}
+          href={`/catalog/${car.id}`}
+          size="md"
+          className={css.btn}
+        >
+          Read more
+        </Button>
+      </div>
     </li>
   );
 };
