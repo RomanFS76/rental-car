@@ -25,3 +25,8 @@ export const getCars = async (params: GetCarsParams) => {
 
   return res.data;
 };
+
+export const getBrands = async () => {
+  const res = await axios.get<string[]>('/brands');
+  return res.data;
+};

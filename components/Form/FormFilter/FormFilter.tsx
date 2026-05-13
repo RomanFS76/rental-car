@@ -5,18 +5,9 @@ import css from './FormFilter.module.css';
 import { useState } from 'react';
 import Button from '../../shared/Button/Button';
 import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { getBrands } from '@/lib/api/api';
 
-const brandOptions = [
-  { value: 'Aston Martin', label: 'Aston Martin' },
-  { value: 'Audi', label: 'Audi' },
-  { value: 'BMW', label: 'BMW' },
-  { value: 'Bentley', label: 'Bentley' },
-  { value: 'Buick', label: 'Buick' },
-  { value: 'Chevrolet', label: 'Chevrolet' },
-  { value: 'Chrysler', label: 'Chrysler' },
-  { value: 'GMC', label: 'GMC' },
-  { value: 'HUMMER', label: 'HUMMER' },
-];
 const priceOptions = [
   { value: '30', label: '30' },
   { value: '40', label: '40' },
@@ -28,7 +19,6 @@ const priceOptions = [
 
 const formatMileage = (value: string) => {
   const numbers = value.replace(/\D/g, '');
-
   return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
@@ -38,6 +28,17 @@ const FormFilter = () => {
   const [price, setPrice] = useState('');
   const [minMileage, setMinMileage] = useState('');
   const [maxMileage, setMaxMileage] = useState('');
+
+  const { data:brands } = useQuery({
+    queryKey: ['brands'],
+    queryFn: getBrands,
+  });
+
+  const brandOptions =
+    brands?.map(brand => ({
+      value: brand,
+      label: brand,
+    })) ?? [];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +63,7 @@ const FormFilter = () => {
 
     router.push(`/catalog?${params.toString()}`);
 
-    console.log(price)
+    console.log(price);
 
     setBrand('');
     setPrice('');

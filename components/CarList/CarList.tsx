@@ -19,7 +19,6 @@ const CarList = ({ params }: PropsCarList) => {
     queryKey: ['cars', params],
     queryFn: () => getCars(params),
   });
-  console.log(data);
 
   return (
     <ul className={css.list}>
