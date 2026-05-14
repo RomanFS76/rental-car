@@ -12,9 +12,11 @@
     "@tanstack/react-query": "^5.100.10",
     "axios": "^1.16.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "modern-normalize": "^3.0.1",
     "next": "16.1.1",
     "react": "19.2.3",
+    "react-datepicker": "^9.1.0",
     "react-dom": "19.2.3",
     "react-loader-spinner": "^8.0.2",
     "react-select": "^5.10.2"
