@@ -17,15 +17,9 @@ const Header = () => {
   return (
     <header className={css.header}>
       <div className={`container ${css.headerContainer}`}>
-        <Link href="/">
-          <Image
-            src="/img/logo.svg"
-            alt="RentalCar logo"
-            width={104}
-            height={16}
-            loading="eager"
-          />
-        </Link>
+        <svg width={104} height={16}>
+          <use href={`/icons/sprite.svg#logo`} />
+        </svg>
 
         <nav className={css.nav}>
           <Link href="/" className={homeLinkClass}>

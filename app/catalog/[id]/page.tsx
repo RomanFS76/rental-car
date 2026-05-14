@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import css from './CarDetailePage.module.css';
 
-import { getDetailCar } from '@/lib/api/api';
+import { getDetaileCar } from '@/lib/api/api';
 import RenatalForm from '@/components/Form/RentalForm/RentalForm';
 
 type CarDetailePageProps = {
@@ -24,7 +24,7 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
     fuelConsumption,
     engineSize,
     type,
-  } = await getDetailCar(id);
+  } = await getDetaileCar(id);
   const [, city, country] = address.split(', ');
 
   const imageId = img.split('/').pop()?.split('-')[0];
