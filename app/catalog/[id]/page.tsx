@@ -2,7 +2,7 @@ import Image from 'next/image';
 import css from './CarDetailePage.module.css';
 
 import { getDetailCar } from '@/lib/api/api';
-import RenatalForm from '@/components/Form/RenatalForm/RenatalForm';
+import RenatalForm from '@/components/Form/RentalForm/RentalForm';
 
 type CarDetailePageProps = {
   params: Promise<{ id: string }>;
