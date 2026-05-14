@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const car = await getDetaileCar(id);
 
   return {
-    title: `${car.brand} ${car.model} ${car.year} | Rental Cars`,
+    title: `${car.brand} ${car.model} | Rental Cars`,
     description: car.description,
 
     openGraph: {
@@ -29,6 +29,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           alt: `${car.brand} ${car.model}`,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${car.brand} ${car.model} ${car.year}`,
+      description: car.description,
+      images: [car.img],
     },
   };
 }
