@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import css from './Header.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,9 +16,11 @@ const Header = () => {
   return (
     <header className={css.header}>
       <div className={`container ${css.headerContainer}`}>
-        <svg width={104} height={16}>
-          <use href={`/icons/sprite.svg#logo`} />
-        </svg>
+        <Link href="/">
+          <svg width={104} height={18}>
+            <use href={`/icons/sprite.svg#logo`} />
+          </svg>
+        </Link>
 
         <nav className={css.nav}>
           <Link href="/" className={homeLinkClass}>

@@ -24,6 +24,7 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
     fuelConsumption,
     engineSize,
     type,
+    accessories,
   } = await getDetaileCar(id);
   const [, city, country] = address.split(', ');
 
@@ -51,8 +52,6 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
       value: engineSize,
     },
   ];
-
-  console.log(imageId);
 
   return (
     <main className={css.main}>
@@ -131,6 +130,18 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
                 <h3 className={css.carInfoTitle}>
                   Accessories and functionalities:
                 </h3>
+                <ul className={css.featuresList}>
+                  {accessories.map(item => {
+                    return (
+                      <li key={item} className={css.featuresItem}>
+                        <svg width={16} height={16}>
+                          <use href="/icons/sprite.svg#check" />
+                        </svg>
+                        <p>{item}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
               </section>
             </div>
           </div>
