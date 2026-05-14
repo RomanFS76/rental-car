@@ -51,6 +51,8 @@ const CarCard = ({ car }: Props) => {
           href={`/catalog/${car.id}`}
           size="md"
           className={css.btn}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Read more
         </Button>

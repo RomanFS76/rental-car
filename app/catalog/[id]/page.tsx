@@ -3,6 +3,35 @@ import css from './CarDetailePage.module.css';
 
 import { getDetaileCar } from '@/lib/api/api';
 import RenatalForm from '@/components/Form/RentalForm/RentalForm';
+import { Metadata } from 'next';
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
+  const car = await getDetaileCar(id);
+
+  return {
+    title: `${car.brand} ${car.model} ${car.year} | Rental Cars`,
+    description: car.description,
+
+    openGraph: {
+      title: `${car.brand} ${car.model} ${car.year}`,
+      description: car.description,
+      images: [
+        {
+          url: car.img,
+          width: 1200,
+          height: 630,
+          alt: `${car.brand} ${car.model}`,
+        },
+      ],
+    },
+  };
+}
 
 type CarDetailePageProps = {
   params: Promise<{ id: string }>;
