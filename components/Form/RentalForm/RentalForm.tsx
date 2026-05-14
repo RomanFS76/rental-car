@@ -1,4 +1,4 @@
-import css from './RenatalForm.module.css'
+import css from './RentalForm.module.css'
 
 const RenatalForm = () => {
   return (

@@ -8,98 +8,87 @@
   gap: 72px;
 }
 
-.leftSide {
+/* Left side */
+
+.leftSide,
+.rightSide,
+.carInfo,
+.conditionsList,
+.specList {
   display: flex;
   flex-direction: column;
+}
+
+.leftSide {
   gap: 40px;
 }
 
 .carImg {
-  border-radius: 18.742px;
+  border-radius: 18px;
 }
 
-/* rightSide */
-
-/* section details */
+/* Right side */
 
 .rightSide {
-  display: flex;
-  flex-direction: column;
   gap: 68px;
 }
 
-.modelBrand {
+.modelBrand,
+.locationMileage,
+.location,
+.conditionsItem,
+.specItem {
   display: flex;
   align-items: center;
+}
+
+.modelBrand {
   gap: 16px;
   margin-bottom: 8px;
 }
 
-.carTitle {
-  font-size: var(--font-size-xl);
-
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-relaxed);
-}
-
 .locationMileage {
-  display: flex;
   gap: 16px;
   margin-bottom: 16px;
 }
 
-.location {
-  display: flex;
-  gap: 4px;
+.location,
+.conditionsItem,
+.specItem {
+  gap: 8px;
 }
 
+.carTitle,
 .price {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-relaxed);
-  color: var(--blue-500);
+}
+
+.price {
   margin-bottom: 32px;
+  color: var(--blue-500);
 }
 
 .imageId {
   color: var(--gray-500);
 }
 
+/* Info sections */
+
 .carInfo {
-  display: flex;
-  flex-direction: column;
   gap: 110px;
 }
 
 .carInfoTitle {
+  margin-bottom: 20px;
+
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
-  margin-bottom: 20px;
 }
 
-.conditionsList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.conditionsItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* section Conditions */
-
+.conditionsList,
 .specList {
-  display: flex;
-  flex-direction: column;
   gap: 16px;
-}
-
-.specItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
