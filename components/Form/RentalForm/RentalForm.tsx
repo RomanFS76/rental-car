@@ -1,34 +1,63 @@
 'use client';
 
-import Button from '@/components/shared/Button/Button';
-import 'react-datepicker/dist/react-datepicker.css';
-
+import { useState } from 'react';
+import { useParams } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
+import 'react-datepicker/dist/react-datepicker.css';
 
-import { useState } from 'react';
+import Button from '@/components/shared/Button/Button';
+import { BookingPayload, createBooking } from '@/lib/api/api';
 import css from './RentalForm.module.css';
 
-const RenatalForm = () => {
+const RentalForm = () => {
   const [bookingDate, setBookingDate] = useState<Date | null>(null);
+  const { id } = useParams<{ id: string }>();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: ({
+      id,
+      payload,
+    }: {
+      id: string;
+      payload: BookingPayload;
+    }) => createBooking(id, payload),
+
+    onSuccess: data => {
+      console.log('Yes');
+      console.log(data);
+    },
+
+    onError: error => {
+      console.log(`Error: ${error}`);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const form = e.currentTarget;
-    const formattedDate = bookingDate ? format(bookingDate, 'dd.MM.yyyy') : '';
+    const formData = new FormData(form);
 
-    const formData = new FormData(e.currentTarget);
-
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      comment: formData.get('comment'),
-      date: formattedDate,
+    const payload: BookingPayload = {
+      name: String(formData.get('name')),
+      email: String(formData.get('email')),
+      comment: String(formData.get('comment')),
+      date: bookingDate ? format(bookingDate, 'dd.MM.yyyy') : '',
     };
-    console.log(data);
-    form.reset();
-    setBookingDate(null);
+
+    mutate(
+      { id, payload },
+      {
+        onSuccess: () => {
+          form.reset();
+          setBookingDate(null);
+        },
+      }
+    );
   };
+
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <div className={css.header}>
@@ -52,6 +81,7 @@ const RenatalForm = () => {
           name="email"
           placeholder="Email*"
         />
+
         <DatePicker
           selected={bookingDate}
           onChange={(date: Date | null) => setBookingDate(date)}
@@ -75,11 +105,11 @@ const RenatalForm = () => {
         />
       </div>
 
-      <Button type="submit" size="sm" className={css.btn}>
-        Send
+      <Button type="submit" size="sm" className={css.btn} disabled={isPending}>
+        {isPending ? 'Sending...' : 'Send'}
       </Button>
     </form>
   );
 };
 
-export default RenatalForm;
+export default RentalForm;

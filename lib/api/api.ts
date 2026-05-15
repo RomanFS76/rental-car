@@ -40,4 +40,30 @@ export const getBrands = async (): Promise<string[]> => {
   return res.data;
 };
 
-// axios.defaults.baseURL = 'https://car-rental-api.goit.global/';
+export const constbookeingCar = async (): Promise<string[]> => {
+  const res = await CarAPI.get<string[]>('/brands');
+  return res.data;
+};
+
+export interface BookingPayload {
+  name: string;
+  email: string;
+  comment: string;
+  date?: string;
+}
+
+type BookingResponse = {
+  message: string;
+};
+
+export const createBooking = async (
+  id: string,
+  payload: BookingPayload
+): Promise<BookingResponse> => {
+  const { data } = await CarAPI.post<BookingResponse>(
+    `/cars/${id}/booking-requests`,
+    payload
+  );
+
+  return data;
+};
