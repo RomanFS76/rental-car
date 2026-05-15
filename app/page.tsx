@@ -1,35 +1,8 @@
 import Button from '../components/shared/Button/Button';
-import type { Metadata } from 'next';
 import css from './page.module.css';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Rental Cars',
-  description: 'Find and rent premium cars quickly and easily.',
 
-  openGraph: {
-    title: 'Rental Cars',
-    description: 'Find and rent premium cars quickly and easily.',
-    url: 'https://rental-car-one-xi.vercel.app',
-    siteName: 'Rental Cars',
-    images: [
-      {
-        url: '/img/hero.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Rental Cars',
-      },
-    ],
-    type: 'website',
-  },
-
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Rental Cars',
-    description: 'Find and rent premium cars quickly and easily.',
-    images: ['/img/hero.webp'],
-  },
-};
 
 export default function Home() {
   return (
