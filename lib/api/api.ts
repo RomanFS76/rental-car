@@ -1,7 +1,12 @@
 import axios from 'axios';
 import type { Car } from '@/types/car';
 
-axios.defaults.baseURL = 'https://car-rental-api.goit.global/';
+const CarAPI = axios.create({
+  baseURL: 'https://car-rental-api.goit.global/',
+  headers: {
+    accept: 'application/json',
+  },
+});
 
 export interface GetCarsParams {
   brand?: string;
@@ -19,19 +24,20 @@ export interface CarsResponse {
 }
 
 export const getCars = async (params: GetCarsParams): Promise<CarsResponse> => {
-  const res = await axios.get<CarsResponse>('/cars', {
+  const res = await CarAPI.get<CarsResponse>('/cars', {
     params,
   });
-
   return res.data;
 };
 
 export const getDetaileCar = async (id: string) => {
-  const res = await axios.get<Car>(`/cars/${id}`);
+  const res = await CarAPI.get<Car>(`/cars/${id}`);
   return res.data;
 };
 
 export const getBrands = async (): Promise<string[]> => {
-  const res = await axios.get<string[]>('/brands');
+  const res = await CarAPI.get<string[]>('/brands');
   return res.data;
 };
+
+// axios.defaults.baseURL = 'https://car-rental-api.goit.global/';
