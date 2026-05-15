@@ -44,18 +44,19 @@ const CarList = ({ params }: PropsCarList) => {
       },
     });
 
-  console.log(data);
   const cars = data?.pages.flatMap(page => page.cars) ?? [];
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
-      {isLoading && <Loader />}
       <ul className={css.list}>
         {cars?.map(car => (
           <CarCard key={car.id} car={car} />
         ))}
       </ul>
-      {isFetchingNextPage && <Loader />}
       {hasNextPage && (
         <Button
           size="sm"
@@ -64,7 +65,7 @@ const CarList = ({ params }: PropsCarList) => {
           disabled={isFetchingNextPage}
           className={css.loadBtn}
         >
-          Load more
+          {isFetchingNextPage ? 'Loading...' : 'Load more'}
         </Button>
       )}
     </>
