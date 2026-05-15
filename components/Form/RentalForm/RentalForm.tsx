@@ -1,5 +1,5 @@
 'use client';
-
+import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
@@ -25,11 +25,13 @@ const RentalForm = () => {
     }) => createBooking(id, payload),
 
     onSuccess: data => {
+      toast.success('Booking request sent');
       console.log('Yes');
       console.log(data);
     },
 
     onError: error => {
+      toast.error('Something went wrong');
       console.log(`Error: ${error}`);
     },
   });
