@@ -53,7 +53,7 @@ const CarList = ({ params }: PropsCarList) => {
   return (
     <>
       <ul className={css.list}>
-        {cars?.map(car => (
+        {cars.map(car => (
           <CarCard key={car.id} car={car} />
         ))}
       </ul>
