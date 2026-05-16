@@ -35,8 +35,16 @@ export const getDetaileCar = async (id: string) => {
   return res.data;
 };
 
-export const getBrands = async (): Promise<string[]> => {
-  const res = await CarAPI.get<string[]>('/brands');
+interface GetFiltersResponse {
+  brands: string[];
+  price: {
+    min: number;
+    max: number;
+  };
+}
+
+export const getFilters = async (): Promise<GetFiltersResponse> => {
+  const res = await CarAPI.get<GetFiltersResponse>('/cars/filters');
   return res.data;
 };
 

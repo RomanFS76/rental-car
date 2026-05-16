@@ -4,14 +4,13 @@ import { Car } from '@/types/car';
 import css from './CarCard.module.css';
 import Button from '../shared/Button/Button';
 
-type Props = {
+type CarCardProps = {
   car: Car;
 };
 
-const CarCard = ({ car }: Props) => {
-  const addressParts = car.address.split(', ');
-  const city = addressParts[1];
-  const country = addressParts[2];
+const CarCard = ({ car }: CarCardProps) => {
+   const { city, country } = car.location;
+
 
   return (
     <li className={css.card}>
