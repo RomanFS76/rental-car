@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { Car } from '@/types/car';
 
 const CarAPI = axios.create({
-  baseURL: 'https://car-rental-api.goit.global/',
+  baseURL: 'https://car-rental-api.goit.study/',
   headers: {
     accept: 'application/json',
   },
