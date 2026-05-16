@@ -9,7 +9,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getFilters, GetFiltersResponse } from '@/lib/api/api';
 import { formatMileage } from './utils';
 
-
 const initialFilters = {
   brand: '',
   price: '',
@@ -20,7 +19,6 @@ const initialFilters = {
 const FormFilter = () => {
   const router = useRouter();
   const [filters, setFilters] = useState(initialFilters);
-
 
   const { data: { brands = [], price: priceRange } = {} } =
     useQuery<GetFiltersResponse>({
@@ -115,6 +113,8 @@ const FormFilter = () => {
               <input
                 className={css.input}
                 type="text"
+                inputMode="numeric"
+                maxLength={5}
                 value={formatMileage(filters.minMileage)}
                 onChange={e =>
                   setFilters(prev => ({
@@ -131,6 +131,8 @@ const FormFilter = () => {
               <input
                 className={css.input}
                 type="text"
+                inputMode="numeric"
+                maxLength={5}
                 value={formatMileage(filters.maxMileage)}
                 onChange={e =>
                   setFilters(prev => ({
