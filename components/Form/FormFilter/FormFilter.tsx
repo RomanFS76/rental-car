@@ -6,16 +6,7 @@ import { useState } from 'react';
 import Button from '../../shared/Button/Button';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { getBrands } from '@/lib/api/api';
-
-const priceOptions = [
-  { value: '30', label: '30' },
-  { value: '40', label: '40' },
-  { value: '50', label: '50' },
-  { value: '60', label: '60' },
-  { value: '70', label: '70' },
-  { value: '80', label: '80' },
-];
+import { getFilters, GetFiltersResponse } from '@/lib/api/api';
 
 const formatMileage = (value: string) => {
   const numbers = value.replace(/\D/g, '');
@@ -29,10 +20,26 @@ const FormFilter = () => {
   const [minMileage, setMinMileage] = useState('');
   const [maxMileage, setMaxMileage] = useState('');
 
-  const { data: brands } = useQuery({
-    queryKey: ['brands'],
-    queryFn: getBrands,
-  });
+  const { data: { brands = [], price: priceRange } = {} } =
+    useQuery<GetFiltersResponse>({
+      queryKey: ['brands'],
+      queryFn: getFilters,
+    });
+
+  const min = priceRange?.min ?? 0;
+  const max = priceRange?.max ?? 0;
+
+  const priceOptions = Array.from(
+    { length: (max - min) / 10 + 1 },
+    (_, index) => {
+      const value = String(min + index * 10);
+
+      return {
+        value,
+        label: value,
+      };
+    }
+  );
 
   const brandOptions =
     brands?.map(brand => ({
@@ -40,11 +47,8 @@ const FormFilter = () => {
       label: brand,
     })) ?? [];
 
+  console.log(brandOptions);
 
-
-
-
-    
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

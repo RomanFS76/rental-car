@@ -35,7 +35,7 @@ export const getDetaileCar = async (id: string) => {
   return res.data;
 };
 
-interface GetFiltersResponse {
+export interface GetFiltersResponse {
   brands: string[];
   price: {
     min: number;
