@@ -1,10 +1,10 @@
 .form {
   width: 640px;
-  height: 488px;
+  height: 424px;
   padding: 32px;
 
-  border-radius: 10px;
-  border: 1px solid var(--gray-400);
+  border-radius: var(--radius-md);
+  background-color: var(--white);
 }
 
 .header {
@@ -36,7 +36,7 @@
   padding: 14px 20px;
 
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   outline: none;
 
   background-color: var(--gray-200);
@@ -67,7 +67,7 @@
   width: auto;
   height: 284px;
   border: 2px solid var(--blue-500);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background-color: var(--white);
   font-family: inherit;
@@ -160,7 +160,7 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
+  border-radius: var(--radius-full);
 
   font-size: 14px;
   font-weight: 400;
@@ -168,7 +168,9 @@
 
   color: #101828;
 
-  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+  transition:
+    background-color 100ms ease-in-out,
+    color 100ms ease-in-out;
 }
 
 /* Дни не текущего месяца */
@@ -183,7 +185,7 @@
 .calendar :global(.react-datepicker__day--keyboard-selected) {
   width: 36px;
   height: 32px;
-  border-radius: 32px;
+  border-radius: var(--radius-4xl);
   background-color: var(--blue-500);
   color: #fff;
 }
@@ -193,7 +195,7 @@
 .calendar :global(.react-datepicker__day:hover) {
   width: 36px;
   height: 32px;
-  border-radius: 32px;
+  border-radius: var(--radius-4xl);
   background-color: #3470ff;
   color: #fff;
 }

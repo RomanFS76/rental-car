@@ -26,7 +26,10 @@ export interface CarsResponse {
 
 export const getCars = async (params: GetCarsParams): Promise<CarsResponse> => {
   const res = await CarAPI.get<CarsResponse>('/cars', {
-    params,
+    params: {
+      perPage: 12,
+      ...params,
+    },
   });
   return res.data;
 };
@@ -58,7 +61,6 @@ export interface BookingPayload {
   name: string;
   email: string;
   comment: string;
-  date?: string;
 }
 
 type BookingResponse = {

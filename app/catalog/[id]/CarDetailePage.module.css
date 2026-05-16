@@ -1,11 +1,11 @@
 .main {
-  padding: 84px 0 104px;
+  padding: 84px 0 176px;
 }
 
 .section {
   display: grid;
   grid-template-columns: 640px 488px;
-  gap: 72px;
+  gap: 32px;
 }
 
 /* Layout */
@@ -25,17 +25,20 @@
 }
 
 .rightSide {
-  gap: 68px;
+  padding: 32px 24px;
+  gap: 36px;
+  border-radius: var(--radius-2xl);
+  background-color: var(--white);
 }
 
 .carInfo {
-  gap: 110px;
+  gap: 48px;
 }
 
 /* Image */
 
 .carImg {
-  border-radius: 18px;
+  border-radius: var(--radius-3xl);
 }
 
 /* Flex rows */

@@ -1,10 +1,9 @@
 'use client';
 import toast from 'react-hot-toast';
-import { useState } from 'react';
+
 import { useParams } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import DatePicker from 'react-datepicker';
-import { format } from 'date-fns';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import Button from '@/components/shared/Button/Button';
@@ -12,7 +11,7 @@ import { BookingPayload, createBooking } from '@/lib/api/api';
 import css from './RentalForm.module.css';
 
 const RentalForm = () => {
-  const [bookingDate, setBookingDate] = useState<Date | null>(null);
+
   const { id } = useParams<{ id: string }>();
 
   const { mutate, isPending } = useMutation({
@@ -26,13 +25,13 @@ const RentalForm = () => {
 
     onSuccess: data => {
       toast.success('Booking request sent');
-      console.log('Yes');
-      console.log(data);
+      ('Yes');
+      (data);
     },
 
     onError: error => {
       toast.error('Something went wrong');
-      console.log(`Error: ${error}`);
+      (`Error: ${error}`);
     },
   });
 
@@ -46,15 +45,13 @@ const RentalForm = () => {
       name: String(formData.get('name')),
       email: String(formData.get('email')),
       comment: String(formData.get('comment')),
-      date: bookingDate ? format(bookingDate, 'dd.MM.yyyy') : '',
     };
 
     mutate(
       { id, payload },
       {
         onSuccess: () => {
-          form.reset();
-          setBookingDate(null);
+          form.reset();   
         },
       }
     );
@@ -84,21 +81,6 @@ const RentalForm = () => {
           placeholder="Email*"
         />
 
-        <DatePicker
-          selected={bookingDate}
-          onChange={(date: Date | null) => setBookingDate(date)}
-          placeholderText="Booking date"
-          dateFormat="dd.MM.yyyy"
-          minDate={new Date()}
-          className={css.input}
-          calendarClassName={css.calendar}
-          showPopperArrow
-          calendarStartDay={1}
-          formatWeekDay={name => name.slice(0, 3).toUpperCase()}
-          previousMonthButtonLabel=""
-          nextMonthButtonLabel=""
-          autoComplete="off"
-        />
 
         <textarea
           className={css.textarea}

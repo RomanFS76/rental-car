@@ -1,7 +1,9 @@
 .form {
   width: 924px;
+
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: end;
   gap: 16px;
   margin: 0 auto;
 }
@@ -15,7 +17,7 @@
 .label {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-relaxed);
-  color: var(--gray-500);
+  color: var(--gray-450);
   font-weight: 400;
 }
 
@@ -25,8 +27,8 @@
   min-height: 44px;
   width: 204px;
   border: none;
-  border-radius: 12px;
-  background-color: var(--gray-200);
+  border-radius: var(--radius-lg);
+  background-color: var(--white);
   box-shadow: none;
   cursor: pointer;
 }
@@ -68,9 +70,10 @@
 
 .field :global(.filterSelect__menu) {
   margin-top: 4px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: none;
+  background-color: var(--white);
   border: 1px solid #f7f7f7;
   width: 204px;
   padding-right: 8px;
@@ -117,61 +120,80 @@
 
 .field :global(.filterSelect__menu-list::-webkit-scrollbar-thumb) {
   background-color: #dadde1;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
+}
+
+/* Styles range of Mileage */
+
+.mileageWrapper {
+  display: flex;
+}
+
+.mileageInput {
+  display: flex;
+  align-items: center;
+
+  width: 160px;
+  height: 44px;
+
+  padding: 0 24px;
+
+  background-color: var(--white);
+}
+
+.mileageInput:first-child {
+  border-right: 1px solid var(--gray-300);
+  border-radius: 12px 0 0 12px;
+}
+
+.mileageInput:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.mileageText {
+  margin-right: 8px;
+
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  color: var(--black);
+}
+
+.input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  color: var(--black);
+}
+
+.mileageInput:first-child {
+  border-right: 2px solid var(--gray-400);
 }
 
 .formBtn {
   height: 44px;
 }
 
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  
+}
 
-/* Styles range of Mileage */
-
-.mileageWrapper {
-    display: flex;
-  }
-  
-  .mileageInput {
-    display: flex;
-    align-items: center;
-  
-    width: 160px;
-    height: 44px;
-  
-    padding: 0 24px;
-  
-    background-color: var(--gray-200);
-  }
-  
-  .mileageInput:first-child {
-    border-right: 1px solid var(--gray-300);
-    border-radius: 12px 0 0 12px;
-  }
-  
-  .mileageInput:last-child {
-    border-radius: 0 12px 12px 0;
-  }
-  
-  .mileageText {
-    margin-right: 8px;
-  
-    font-size: 16px;
-    font-weight: var(--font-weight-medium);
-    color: var(--black);
-  }
-  
-  .input {
-    width: 100%;
-  
-    border: none;
-    outline: none;
-    background-color: transparent;
-  
-    font-size: 16px;
-    font-weight: var(--font-weight-medium);
-    color: var(--black);
-  }
-
-  .mileageInput:first-child {
-    border-right: 2px solid var(--gray-400);
-  }
+.clearBtn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--gray-450);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+}

@@ -32,14 +32,15 @@ const CarCard = ({ car }: CarCardProps) => {
       <div className={css.overlayInfo}>
         <p className={css.info}>
           {city}
-          <span>|</span>
+          <span className={css.separator }>|</span>
           {country}
-          <span>|</span>
+          <span className={css.separator }>|</span>
           {car.rentalCompany}
+          <span className={css.separator }>|</span>
         </p>
         <p className={css.info}>
           {car.type}
-          <span>|</span>
+          <span className={css.separator }>|</span>
           {car.mileage} km
         </p>
       </div>

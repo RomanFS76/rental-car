@@ -1,11 +1,11 @@
+import './globals.css';
 import { Manrope } from 'next/font/google';
 import type { Metadata } from 'next';
 import 'modern-normalize/modern-normalize.css';
-import './globals.css';
+
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Header from '../components/Header/Header';
 import { Toaster } from 'react-hot-toast';
-
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rental-car-one-xi.vercel.app'),
@@ -54,7 +54,7 @@ export default function RootLayout({
           <Header />
           {children}
         </TanStackProvider>
-        <Toaster position="top-right" />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

@@ -13,12 +13,17 @@ const formatMileage = (value: string) => {
   return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
+const initialFilters = {
+  brand: '',
+  price: '',
+  minMileage: '',
+  maxMileage: '',
+};
+
 const FormFilter = () => {
   const router = useRouter();
-  const [brand, setBrand] = useState('');
-  const [price, setPrice] = useState('');
-  const [minMileage, setMinMileage] = useState('');
-  const [maxMileage, setMaxMileage] = useState('');
+  const [filters, setFilters] = useState(initialFilters);
+
 
   const { data: { brands = [], price: priceRange } = {} } =
     useQuery<GetFiltersResponse>({
@@ -47,98 +52,117 @@ const FormFilter = () => {
       label: brand,
     })) ?? [];
 
-  console.log(brandOptions);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     const params = new URLSearchParams();
 
-    if (brand) {
-      params.set('brand', brand);
-    }
-
-    if (price) {
-      params.set('price', price);
-    }
-
-    if (minMileage) {
-      params.set('minMileage', minMileage);
-    }
-
-    if (maxMileage) {
-      params.set('maxMileage', maxMileage);
-    }
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, String(value));
+      }
+    });
 
     router.push(`/catalog?${params.toString()}`);
-
-    console.log(price);
-
-    setBrand('');
-    setPrice('');
-    setMinMileage('');
-    setMaxMileage('');
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.field}>
-        <span className={css.label}>Car brand</span>
-        <Select
-          instanceId="brand-select"
-          classNamePrefix="filterSelect"
-          options={brandOptions}
-          placeholder="Choose a brand"
-          isSearchable={false}
-          value={brandOptions.find(option => option.value === brand) || null}
-          onChange={option => setBrand(option?.value || '')}
-        />
-      </label>
-      <label className={css.field}>
-        <span className={css.label}>Price / 1 hour</span>
-        <Select
-          instanceId="price-select"
-          classNamePrefix="filterSelect"
-          options={priceOptions}
-          placeholder="Choose a price"
-          isSearchable={false}
-          value={priceOptions.find(option => option.value === price) || null}
-          onChange={option => setPrice(option?.value || '')}
-        />
-      </label>
+    <div>
+      <form className={css.form} action={handleSubmit}>
+        <label className={css.field}>
+          <span className={css.label}>Car brand</span>
+          <Select
+            instanceId="brand-select"
+            classNamePrefix="filterSelect"
+            options={brandOptions}
+            placeholder="Choose a brand"
+            isSearchable={false}
+            value={
+              brandOptions.find(option => option.value === filters.brand) ||
+              null
+            }
+            onChange={option =>
+              setFilters(prev => ({
+                ...prev,
+                brand: option?.value || '',
+              }))
+            }
+          />
+        </label>
+        <label className={css.field}>
+          <span className={css.label}>Price / 1 hour</span>
+          <Select
+            instanceId="price-select"
+            classNamePrefix="filterSelect"
+            options={priceOptions}
+            placeholder="Choose a price"
+            isSearchable={false}
+            value={
+              priceOptions.find(option => option.value === filters.price) ||
+              null
+            }
+            onChange={option =>
+              setFilters(prev => ({
+                ...prev,
+                price: option?.value || '',
+              }))
+            }
+          />
+        </label>
 
-      <label className={css.field}>
-        <span className={css.label}>Car mileage / km</span>
+        <label className={css.field}>
+          <span className={css.label}>Car mileage / km</span>
 
-        <div className={css.mileageWrapper}>
-          <div className={css.mileageInput}>
-            <span className={css.mileageText}>From</span>
+          <div className={css.mileageWrapper}>
+            <div className={css.mileageInput}>
+              <span className={css.mileageText}>From</span>
 
-            <input
-              className={css.input}
-              type="text"
-              value={formatMileage(minMileage)}
-              onChange={e => setMinMileage(e.target.value.replace(/\D/g, ''))}
-            />
+              <input
+                className={css.input}
+                type="text"
+                value={formatMileage(filters.minMileage)}
+                onChange={e =>
+                  setFilters(prev => ({
+                    ...prev,
+                    minMileage: e.target.value.replace(/\D/g, ''),
+                  }))
+                }
+              />
+            </div>
+
+            <div className={css.mileageInput}>
+              <span className={css.mileageText}>To</span>
+
+              <input
+                className={css.input}
+                type="text"
+                value={formatMileage(filters.maxMileage)}
+                onChange={e =>
+                  setFilters(prev => ({
+                    ...prev,
+                    maxMileage: e.target.value.replace(/\D/g, ''),
+                  }))
+                }
+              />
+            </div>
           </div>
+        </label>
 
-          <div className={css.mileageInput}>
-            <span className={css.mileageText}>To</span>
-
-            <input
-              className={css.input}
-              type="text"
-              value={formatMileage(maxMileage)}
-              onChange={e => setMaxMileage(e.target.value.replace(/\D/g, ''))}
-            />
-          </div>
+        <div className={css.actions}>
+          <Button type="submit" size="sm" className={css.formBtn}>
+            Submit
+          </Button>
+          <button
+            type="button"
+            className={css.clearBtn}
+            onClick={() => {
+              setFilters(initialFilters);
+              router.push('/catalog');
+            }}
+          >
+            Clear filters
+          </button>
         </div>
-      </label>
-
-      <Button type="submit" size="sm" className={css.formBtn}>
-        Submit
-      </Button>
-    </form>
+      </form>
+    </div>
   );
 };
 

@@ -1,13 +1,17 @@
 .card {
   width: 276px;
-  height: 424px;
+ 
+  padding: 16px;
+  border-radius: var(--radius-2xl);
+
   display: flex;
   flex-direction: column;
 
+  background-color: var(--white);
 }
 
 .image {
-  border-radius: 14px;
+  border-radius: var(--radius-xl);
   object-fit: cover;
   margin-bottom: 16px;
 }
@@ -20,16 +24,21 @@
 
 .title {
   font-weight: var(--font-weight-medium);
+  height: 40px;
 }
 
 .overlayInfo {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding: 8px;
   font-size: 12px;
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
-  color: var(--gray-500);
+  background-color: var(--gray-50);
+  color: var(--black-900);
+  border-radius: var(--radius-sm);
+
 }
 .title span {
   color: var(--blue-500);
@@ -50,4 +59,10 @@
 a.btn {
   width: 100%;
   padding: 12px 0;
+}
+
+.separator {
+  height: 16px;
+  width: 1px;
+  color: var(--gray-400);
 }

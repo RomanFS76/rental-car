@@ -3,7 +3,9 @@
   --black-900: #101828;
 
   /* Gray */
+  /* Gray */
   --gray-500: #8e929a;
+  --gray-450: #8d929a;
   --gray-400: #dadde1;
   --gray-300: #f2f4f7;
   --gray-200: #f7f7f7;
@@ -11,8 +13,8 @@
   --gray-50: #f5f5f5;
 
   /* Blue */
-  --blue-500: #3470ff;
-  --blue-600: #0b44cd;
+  --blue-500: #00aad4;
+  --blue-600: #0095ba;
 
   /* Base */
   --white: #ffffff;
@@ -34,6 +36,18 @@
   --line-height-tight: 1.2;
   --line-height-normal: 1.25;
   --line-height-relaxed: 1.33333;
+
+  /*   Border radius */
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 18px;
+  --radius-4xl: 32px;
+  --radius-full: 50%;
 }
 
 *,
@@ -98,7 +112,7 @@ body {
   flex-direction: column;
 
   color: var(--black-900);
-  background: var(--white);
+  background: var(--gray-50);
   font-family: var(--font-manrope);
   font-size: var(--font-size-md);
   line-height: var(--line-height-normal);

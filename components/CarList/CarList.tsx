@@ -46,7 +46,7 @@ const CarList = ({ params }: PropsCarList) => {
       },
     });
 
-    console.log(data)
+    (data)
 
   const cars = data?.pages.flatMap(page => page.cars) ?? [];
 

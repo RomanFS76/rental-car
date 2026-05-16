@@ -1,8 +1,9 @@
 'use client';
-import css from './Header.module.css';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import css from './Header.module.css';
 
 const Header = () => {
   const pathname = usePathname();

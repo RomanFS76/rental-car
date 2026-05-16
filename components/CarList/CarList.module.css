@@ -14,7 +14,7 @@ button.loadBtn {
   margin: 0 auto;
 
   color: var(--black-900);
-  background-color: var(--white);
+  background-color: var(--gray-50);
   border: 1px solid var(--blue-500);
 
   font-weight: var(--font-weight-semibold);
