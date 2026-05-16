@@ -7,11 +7,8 @@ import Button from '../../shared/Button/Button';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { getFilters, GetFiltersResponse } from '@/lib/api/api';
+import { formatMileage } from './utils';
 
-const formatMileage = (value: string) => {
-  const numbers = value.replace(/\D/g, '');
-  return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
 
 const initialFilters = {
   brand: '',
