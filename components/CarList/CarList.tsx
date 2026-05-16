@@ -11,9 +11,11 @@ import Loader from '../Loader/Loader';
 type PropsCarList = {
   params: {
     brand?: string;
-    rentalPrice?: string;
-    minMileage?: string;
-    maxMileage?: string;
+    price?: number;
+    minMileage?: number;
+    maxMileage?: number;
+    perPage?: number;
+    page?: number;
   };
 };
 
@@ -43,6 +45,8 @@ const CarList = ({ params }: PropsCarList) => {
         return currentPage < lastPage.totalPages ? currentPage + 1 : undefined;
       },
     });
+
+    console.log(data)
 
   const cars = data?.pages.flatMap(page => page.cars) ?? [];
 

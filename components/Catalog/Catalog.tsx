@@ -10,9 +10,11 @@ import { CarsResponse, getCars } from '@/lib/api/api';
 type PropsCatalog = {
   searchParams: Promise<{
     brand?: string;
-    rentalPrice?: string;
-    minMileage?: string;
-    maxMileage?: string;
+    price?: number;
+    minMileage?: number;
+    maxMileage?: number;
+    perPage?: number;
+    page?: number;
   }>;
 };
 
@@ -22,24 +24,21 @@ const Catalog = async ({ searchParams }: PropsCatalog) => {
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['cars', params],
-  
+
     queryFn: ({ pageParam }) =>
       getCars({
         ...params,
-        page: Number(pageParam),
+        page: pageParam,
       }),
-  
+
     initialPageParam: 1,
-  
-    getNextPageParam: (lastPage:CarsResponse) =>
-      lastPage.page < lastPage.totalPages
-        ? lastPage.page + 1
-        : undefined
-  },
-);
+
+    getNextPageParam: (lastPage: CarsResponse) =>
+      lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+  });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-     <CarList params={params} />
+      <CarList params={params} />
     </HydrationBoundary>
   );
 };

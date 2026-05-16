@@ -59,7 +59,7 @@ const FormFilter = () => {
     }
 
     if (price) {
-      params.set('rentalPrice', price);
+      params.set('price', price);
     }
 
     if (minMileage) {

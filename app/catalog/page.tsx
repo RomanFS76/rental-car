@@ -37,9 +37,11 @@ export const metadata: Metadata = {
 type PropsPageCatalog = {
   searchParams: Promise<{
     brand?: string;
-    rentalPrice?: string;
-    minMileage?: string;
-    maxMileage?: string;
+    price?: number;
+    minMileage?: number;
+    maxMileage?: number;
+    perPage?: number;
+    page?: number;
   }>;
 };
 

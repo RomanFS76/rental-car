@@ -51,17 +51,17 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
     brand,
     model,
     year,
-    address,
+    location,
     mileage,
     rentalPrice,
     description,
     rentalConditions,
     fuelConsumption,
-    engineSize,
+    engine,
     type,
-    accessories,
+    features,
   } = await getDetaileCar(id);
-  const [, city, country] = address.split(', ');
+  const {city, country} = location;
 
   const imageId = img.split('/').pop()?.split('-')[0];
 
@@ -84,7 +84,7 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
     {
       icon: 'gear',
       label: 'Engine Size',
-      value: engineSize,
+      value: engine,
     },
   ];
 
@@ -166,7 +166,7 @@ const CarDetailePage = async ({ params }: CarDetailePageProps) => {
                   Accessories and functionalities:
                 </h3>
                 <ul className={css.featuresList}>
-                  {accessories.map(item => {
+                  {features.map(item => {
                     return (
                       <li key={item} className={css.featuresItem}>
                         <svg width={16} height={16}>
