@@ -54,7 +54,7 @@ export default function RootLayout({
           <Header />
           {children}
         </TanStackProvider>
-        <Toaster position="top-center" />
+        <Toaster position="bottom-center" />
       </body>
     </html>
   );
