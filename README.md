@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚗 RentalCar
 
-## Getting Started
+RentalCar — сучасний вебзастосунок для пошуку та оренди автомобілів.  
+Користувачі можуть переглядати каталог авто, фільтрувати машини за різними параметрами та переглядати детальну інформацію про кожен автомобіль.
 
-First, run the development server:
+---
+
+## ✨ Основні можливості
+
+- 📋 Перегляд каталогу автомобілів
+- 🔍 Фільтрація авто за:
+  - брендом
+  - ціною
+  - пробігом
+- 🚘 Детальна сторінка автомобіля
+- ♾️ Infinite Scroll / кнопка **Load More**
+- ⚡ Отримання даних через API
+- 🧠 Кешування та синхронізація даних через React Query
+- 📱 Адаптивний дизайн
+- 🔎 SEO metadata для сторінок
+
+---
+
+## 🛠️ Технології
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **TanStack Query (React Query)**
+  - useQuery
+  - useInfiniteQuery
+  - useMutation
+- **Axios**
+- **CSS Modules**
+- **React Select**
+
+---
+
+## 📦 Встановлення проєкта
+
+### 1. Клонувати репозиторій
+
+```bash
+git clone https://github.com/your-username/rental-car.git
+```
+
+### 2. Перейти в директорію проєкту
+
+```bash
+cd rental-car
+```
+
+### 3. Встановити залежності
+
+```bash
+yarn
+```
+
+або
+
+```bash
+npm install
+```
+
+### 4. Запустити проєкт
+
+```bash
+yarn dev
+```
+
+або
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔗 https://rental-car-one-xi.vercel.app/
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Структура проєкту
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```txt
+app/                 — сторінки Next.js
+components/          — React компоненти
+components/shared/   — перевикористовувані UI компоненти
+lib/api/             — API запити
+public/              — статичні файли
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 👨‍💻 Автор
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Роман Палагута**  
+Full Stack Developer
