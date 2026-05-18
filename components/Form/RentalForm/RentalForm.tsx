@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
+import clsx from 'clsx';
 
 import Button from '@/components/shared/Button/Button';
 import { BookingPayload, createBooking } from '@/lib/api/api';
@@ -39,6 +40,7 @@ const validationSchema = Yup.object({
 
   comment: Yup.string()
     .trim()
+    .required('Please fill comment field')
     .matches(
       /^[A-Za-z0-9\s.,!?'"-]*$/,
       'Comment must contain only latin letters'
@@ -57,7 +59,11 @@ const getSavedValues = (): RentalFormValues => {
 
 const FormikAutoSave = ({ values }: { values: RentalFormValues }) => {
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+    const hasValues = values.name || values.email || values.comment;
+
+    if (hasValues) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+    }
   }, [values]);
 
   return null;
@@ -67,7 +73,7 @@ const RentalForm = () => {
   const { id } = useParams<{ id: string }>();
   const [savedInitialValues] = useState(getSavedValues);
 
-  const { mutate,data, isPending } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: ({ id, payload }: { id: string; payload: BookingPayload }) =>
       createBooking(id, payload),
   });
@@ -85,17 +91,20 @@ const RentalForm = () => {
     mutate(
       { id, payload },
       {
-        onSuccess: () => {
+        onSuccess: (data) => {
+          localStorage.removeItem(STORAGE_KEY);
+
           actions.resetForm({
             values: initialValues,
           });
 
-          localStorage.removeItem(STORAGE_KEY);
           toast.success(`${data?.message}`);
         },
+
         onError: () => {
           toast.error('Something went wrong');
         },
+
         onSettled: () => {
           actions.setSubmitting(false);
         },
@@ -109,7 +118,7 @@ const RentalForm = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ values }) => (
+      {({ values, errors, touched }) => (
         <Form className={css.form}>
           <FormikAutoSave values={values} />
 
@@ -122,30 +131,62 @@ const RentalForm = () => {
           </div>
 
           <div className={css.fields}>
-            <Field
-              className={css.input}
-              type="text"
-              name="name"
-              placeholder="Name*"
-            />
-            <ErrorMessage name="name" component="p" className={css.error} />
+            <div className={css.field}>
+              <ErrorMessage
+                name="name"
+                component="p"
+                className={css.error}
+              />
 
-            <Field
-              className={css.input}
-              type="text"
-              name="email"
-              placeholder="Email*"
-            />
-            <ErrorMessage name="email" component="p" className={css.error} />
+              <Field
+                className={clsx(
+                  css.input,
+                  errors.name && css.inputError
+                )}
+                type="text"
+                name="name"
+                placeholder="Name*"
+              />
+            </div>
 
-            <Field
-              as="textarea"
-              className={css.textarea}
-              name="comment"
-              placeholder="Comment"
-              maxLength={300}
-            />
-            <ErrorMessage name="comment" component="p" className={css.error} />
+            <div className={css.field}>
+              <ErrorMessage
+                name="email"
+                component="p"
+                className={css.error}
+              />
+
+              <Field
+                className={clsx(
+                  css.input,
+                  errors.email && touched.email && css.inputError
+                )}
+                type="text"
+                name="email"
+                placeholder="Email*"
+              />
+            </div>
+
+            <div className={css.field}>
+              <ErrorMessage
+                name="comment"
+                component="p"
+                className={css.error}
+              />
+
+              <Field
+                as="textarea"
+                className={clsx(
+                  css.textarea,
+                  errors.comment &&
+                    touched.comment &&
+                    css.inputError
+                )}
+                name="comment"
+                placeholder="Comment"
+                maxLength={300}
+              />
+            </div>
           </div>
 
           <Button
